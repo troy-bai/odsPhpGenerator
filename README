@@ -1,0 +1,20 @@
+odsPhpGenerator
+===============
+
+Este es un fork del proyecto disponible en:
+
+	<http://odsphpgenerator.lapinator.net>
+
+Básicamente se hizo el fork para poder publicarlo en el repositorio oficial de
+composer <https://packagist.org>.
+
+El paquete se encuentra el repositorio oficial de composer en:
+
+	<>
+
+Changelog
+---------
+
+Cambios respecto a la versión original:
+
+- Se hace uso de namespace odsphpgenerator.

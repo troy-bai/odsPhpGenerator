@@ -1,0 +1,7 @@
+{
+	"name": "lapinator.net/ods-php-generator",
+	"description": "The ods file generator in php",
+	"require": {
+		"php": ">=5.0"
+	}
+}
