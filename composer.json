@@ -1,6 +1,7 @@
 {
 	"name": "lapinator.net/ods-php-generator",
 	"description": "The ods file generator in php",
+	"license": "LGPL-3.0",
 	"require": {
 		"php": ">=5.0"
 	}
