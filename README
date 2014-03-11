@@ -17,4 +17,8 @@ Changelog
 
 Cambios respecto a la versión original:
 
-- Se hace uso de namespace odsphpgenerator.
+-	Se hace uso de namespace odsphpgenerator.
+-	Quitado constructor class/odsTableCell.php ya que genera conflictos con
+	PHP >= 5.3
+-	Agregado método getLetterFromNumber a ods.php que permite obtener el
+	nombre de la celda a partir de su número.

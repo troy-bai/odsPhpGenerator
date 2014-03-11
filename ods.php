@@ -1194,6 +1194,24 @@ class ods {
 		unlink($tmpfile);
 	}
 
+	/**
+	 * Método para obtener la letra correspondiente a partir del número de
+	 * la columna que se está usando.
+	 * @param num Número de la celda (donde 0 es la A)
+	 * @author Lars Brandi Jensen (lbj[at]lrlmaa.com)
+	 * @version 2014-03-11
+	 */
+	public function getLetterFromNumber ($num) {
+		$numeric = $num % 26;
+		$letter = chr(65 + $numeric);
+		$num2 = intval($num / 26);
+		if ($num2 > 0) {
+			$numeric1 = ($num2-1) % 26;
+                        $letter1 = chr(65 + $numeric1);
+			return $letter1 . $letter;
+		} else {
+			return $letter;
+		}
+	}
+
 }
- 
-?>
