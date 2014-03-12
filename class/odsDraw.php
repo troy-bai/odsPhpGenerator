@@ -7,9 +7,9 @@
 namespace odsphpgenerator;
  
 abstract class odsDraw {
-	protected $styleGraphic;
-	protected $zIndex;           // number 
-	protected $tableBackground;  // "true", "false", null
+	private $styleGraphic;
+	private $zIndex;           // number 
+	private $tableBackground;  // "true", "false", null
 	
 	//abstract function __construct();
 	abstract function getContent(ods $ods, \DOMDocument $dom);
@@ -167,6 +167,84 @@ class odsDrawRect extends odsDraw {
 		return "odsDrawRect";
 	}
 	
+}
+
+class odsDrawImage extends odsDraw {
+	protected $image;
+        protected $x;
+        protected $y;
+        protected $width;
+        protected $height;
+        protected $zIndex;
+        protected $styleParagraph;
+	protected $odsStyleGraphic;
+
+        static protected $defaultStyle = null;
+        static protected $defaultStyleParagraph = null;
+
+        public function __construct($image, $x, $y, $width, $height, $odsStyleGraphic = null, $odsStyleParagraph = null ) {
+                $this->image           = $image;
+                $this->x               = $x;
+                $this->y               = $y;
+                $this->width           = $width;
+                $this->height          = $height;
+                $this->zIndex          = "2";
+                $this->styleGraphic    = $odsStyleGraphic;
+                $this->styleParagraph  = $odsStyleParagraph;
+        }
+
+        function getContent(ods $ods, DOMDocument $dom) {
+
+                if($this->styleGraphic)
+                        $style = $this->styleGraphic;
+                else
+                        $style = self::getOdstyleGraphic();
+
+                if($this->styleParagraph)
+                        $styleParagraph = $this->styleParagraph;
+                else
+                        $styleParagraph = self::getOdstyleParagraph();
+
+                $ods->addTmpStyles($style);
+                $ods->addTmpStyles($styleParagraph);
+				$this->image = $ods->addTmpPictures($this->image);
+
+                $draw_frame = $dom->createElement('draw:frame');
+                        $draw_frame->setAttribute('draw:z-index', $this->zIndex);
+                        $draw_frame->setAttribute('draw:style-name', $style->getName());
+                        $draw_frame->setAttribute('draw:text-style-name', $styleParagraph->getName());
+                        $draw_frame->setAttribute('svg:x',      $this->x);
+                        $draw_frame->setAttribute('svg:y',      $this->y);
+                        $draw_frame->setAttribute('svg:width',  $this->width);
+                        $draw_frame->setAttribute('svg:height', $this->height);
+
+				$draw_image = $dom->createElement('draw:image');
+					$draw_image->setAttribute('xlink:href', $this->image);
+
+					$text_p = $dom->createElement('text:p');
+						$draw_image->appendChild($text_p);
+
+					$draw_frame->appendChild($draw_image);
+
+                return $draw_frame;
+        }
+
+        static public function getOdstyleGraphic() {
+                if(!self::$defaultStyle)
+                        self::$defaultStyle = new odsStyleGraphic("gr-img");
+                return self::$defaultStyle;
+        }
+
+        static public function getOdstyleParagraph() {
+                if(!self::$defaultStyleParagraph)
+                        self::$defaultStyleParagraph = new odsStyleParagraph("p1");
+                return self::$defaultStyleParagraph;
+        }
+
+        public function getType() {
+                return "odsDrawImage";
+        }
+
 }
 
 ?>
