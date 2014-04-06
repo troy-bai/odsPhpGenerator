@@ -1,5 +1,10 @@
 {
 	"name": "lapinator.net/ods-php-generator",
+        {
+            "name": "Laurent VUIBERT",
+            "homepage": "http://odsphpgenerator.lapinator.net/",
+            "role": "Developer"
+        }
 	"description": "The ods file generator in php",
 	"license": "LGPL-3.0",
 	"require": {
