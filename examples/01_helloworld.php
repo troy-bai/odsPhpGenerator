@@ -5,10 +5,10 @@
  * See how to create a ODS file from an array in:
  *   <https://github.com/SowerPHP/extension-general/blob/master/Utility/Spreadsheet/ODS.php>
  * @author Esteban De La Fuente Rubio, DeLaF (esteban[at]sasco.cl)
- * @version 2015-05-07
+ * @version 2016-01-17
  */
 date_default_timezone_set('America/Santiago');
-include '../ods.php';
+include '../Vendor/autoload.php';
 $ods = new \odsphpgenerator\ods();
 $table = new \odsphpgenerator\odsTable('sheet');
 $row = new \odsphpgenerator\odsTableRow();
