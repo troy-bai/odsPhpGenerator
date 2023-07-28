@@ -438,7 +438,7 @@ class odsTableCellDraw extends odsTableCell {
 class odsTableCellImage extends odsTableCell {
 	private $file;
 	private $width;
-	private $heigth;
+	private $height;
 	
 	private $zIndex;
 	private $x;
@@ -461,8 +461,8 @@ class odsTableCellImage extends odsTableCell {
 		$this->width = $width;
 	}
 	
-	public function setHeight($heigth) {
-		$this->heigth = $heigth;
+	public function setHeight(height) {
+		$this->height = $height;
 	}
 	
 	public function setZIndex($zIndex) {
